@@ -6,24 +6,18 @@ package id.ac.uad.waqid.model;
 public class Nilai {
 
     private int id;
-    private int kode;
-    private  String nilai;
+    private Matakuliah matakuliah;
+    private Student student;
+    private String nilai;
 
     public Nilai() {
     }
 
-    public Nilai(int id, int kode, String nilai) {
+    public Nilai(int id, Matakuliah matakuliah, Student student, String nilai) {
         this.id = id;
-        this.kode = kode;
+        this.matakuliah = matakuliah;
+        this.student = student;
         this.nilai = nilai;
-    }
-
-    public int getKode() {
-        return kode;
-    }
-
-    public void setKode(int kode) {
-        this.kode = kode;
     }
 
     public int getId() {
@@ -32,6 +26,22 @@ public class Nilai {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Matakuliah getMatakuliah() {
+        return matakuliah;
+    }
+
+    public void setMatakuliah(Matakuliah matakuliah) {
+        this.matakuliah = matakuliah;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public String getNilai() {

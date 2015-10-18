@@ -23,7 +23,7 @@ public class StudentDaoImpl implements StudentDao{
 
     @Override
     public void insert(Student student) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Student (id,name) VALUE (?,?) ");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Student (student_id,student_name) VALUE (?,?) ");
         preparedStatement.setInt(1, student.getId());
         preparedStatement.setString(2, student.getName());
         preparedStatement.executeUpdate();
@@ -33,7 +33,7 @@ public class StudentDaoImpl implements StudentDao{
     @Override
     public void update(int id, Student updatedStudent) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Student SET name=? WHERE id =?");
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Student SET student_name=? WHERE student_id =?");
         preparedStatement.setString(1, updatedStudent.getName());
         preparedStatement.setInt(2, updatedStudent.getId());
 
@@ -43,7 +43,7 @@ public class StudentDaoImpl implements StudentDao{
 
     @Override
     public void delete(int id) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Student WHERE id = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Student WHERE student_id = ?");
         preparedStatement.setInt(1, id);
 
         preparedStatement.executeUpdate();
@@ -55,11 +55,11 @@ public class StudentDaoImpl implements StudentDao{
 
         Student student = new Student();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT name FROM Student WHERE  id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT student_name AS name FROM Student WHERE  student_id=?");
             preparedStatement.setInt(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                student.setName(resultSet.getString("Name"));
+                student.setName(resultSet.getString("name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class StudentDaoImpl implements StudentDao{
     @Override
     public List<Student> findAll() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, name AS  name FROM Student");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT student_id AS id, student_name AS  name FROM Student");
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Student>studentList = new ArrayList<>();
             while (resultSet.next()){

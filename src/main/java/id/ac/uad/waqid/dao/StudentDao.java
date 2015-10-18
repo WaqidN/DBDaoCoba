@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface StudentDao {
 
-    void  insert (Student student) throws SQLException;
+    void  insert(Student student) throws SQLException;
 
     void  update (int id, Student updatedStudent) throws SQLException;
 
